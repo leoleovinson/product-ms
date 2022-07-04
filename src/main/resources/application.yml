@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:productmsdb}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:789632145}
+
+  jpa:
+    properties:
+      hibernate:
+         dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+  sql:
+    init:
+      platform: mysql
+      mode: always
+      
+server:
+  port: '8091'
+ 
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
