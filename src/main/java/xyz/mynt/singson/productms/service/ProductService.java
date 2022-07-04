@@ -13,5 +13,6 @@ public interface ProductService {
 	ProductDTO getProduct(Long productId);
 	ResponseDTO addProduct(ProductDTO product);
 	ResponseDTO reserveProduct(Long productId, Integer quantity);
+	ProductDTO updateProduct(Long productId, ProductDTO product);
 
 }

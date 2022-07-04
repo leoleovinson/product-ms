@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-//	@CachePut(key = "#testId", value = "Product")
+//	@CachePut(key = "#product.id", value = "Product")
 	public ResponseDTO addProduct(ProductDTO product) {
 		ProductEntity productEntity = MapperUtils.toProductEntity(product);
 		productMapper.insertProduct(productEntity);
@@ -87,6 +87,16 @@ public class ProductServiceImpl implements ProductService{
 		int currentReservedQuantity = 0;
 		if (product.getReservedQuantity()!=null) currentReservedQuantity = product.getReservedQuantity();
 		return currentReservedQuantity + quantity;
+	}
+
+	@Override
+	@CachePut(key = "#productId", value = "Product")
+	public ProductDTO updateProduct(Long productId, ProductDTO product) {
+		ProductEntity productEntity = MapperUtils.toProductEntity(product);
+		productEntity.setId(productId);
+		productMapper.update(productEntity);
+		System.out.println("accessed database from update method");
+		return MapperUtils.toProductDTO(productMapper.findById(productId));
 	}
 
 

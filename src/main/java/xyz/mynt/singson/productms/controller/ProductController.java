@@ -53,5 +53,10 @@ public class ProductController {
 	public ResponseEntity<ResponseDTO> reserveProduct(@PathVariable("productId") Long productId, @RequestBody RequestDTO quantity){
 		return new ResponseEntity<>(productService.reserveProduct(productId, quantity.getQuantity()), HttpStatus.OK);
 	}
+	
+	@PutMapping("/update/{productId}")
+	public ResponseEntity<ProductDTO> updateProduct(@PathVariable("productId") Long productId, @RequestBody ProductDTO product){
+		return new ResponseEntity<>(productService.updateProduct(productId, product), HttpStatus.OK);
+	}
 
 }

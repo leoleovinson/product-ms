@@ -29,6 +29,7 @@ public interface ProductMapper {
 	@Update("UPDATE products SET reservedQuantity=#{quantity} WHERE id=#{productId}")
 	int updateProductReservedQuantity(Long productId, Integer quantity);
 	
-	
+	@Update("UPDATE products SET name=#{name}, category=#{category}, price=#{price}, inStock=#{inStock} WHERE id=#{id}")
+	int update(ProductEntity product);
 
 }
